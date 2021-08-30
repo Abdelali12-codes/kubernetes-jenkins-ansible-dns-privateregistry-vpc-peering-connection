@@ -3,8 +3,10 @@ version: "3"
 services:
   registry:
     image: registry:2
-    ports:
-      - "5000:5000"
+    expose:
+      - 5000
+    # ports:
+    #   - "5000:5000"
     environment:
       REGISTRY_AUTH: htpasswd
       REGISTRY_AUTH_HTPASSWD_REALM: Registry
@@ -12,4 +14,12 @@ services:
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
     volumes:
       - ./registry/auth:/auth
-      - ./resgistry/data:/data
+      - ./registry/data:/data
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    links:
+      - resgistry
