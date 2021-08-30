@@ -15,8 +15,8 @@ services:
       REGISTRY_AUTH_HTPASSWD_PATH: /auth/registry.password
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
     volumes:
-      - ./registry/auth:/auth
-      - ./registry/data:/data
+      - ./dockeregistry/auth:/auth
+      - ./dockeregistry/data:/data
   nginx:
     container_name: nginx
     build:
