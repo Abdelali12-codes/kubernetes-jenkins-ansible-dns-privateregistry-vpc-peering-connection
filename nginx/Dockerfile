@@ -1,9 +1,9 @@
 FROM nginx:latest
 
 
-WORKDIR /etc/nginx
+WORKDIR /etc/nginx/conf.d
 
-RUN rm nginx.conf
+RUN rm default.conf
 
 COPY ./nginx.conf .    
 
