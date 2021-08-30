@@ -4,6 +4,7 @@ services:
   registry:
     container_name: registry
     image: registry:2
+    restart: always
     expose:
       - 5000
     # ports:
@@ -21,6 +22,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
+    restart: always
     ports:
       - 80:80
     links:
