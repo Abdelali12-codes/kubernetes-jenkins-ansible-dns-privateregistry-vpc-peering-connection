@@ -55,3 +55,35 @@ docker build -t kibana .
 ```
 docker run -d --name kibana --net somenetwork -p 5601:5601 kibana
 ```
+
+## test the lab
+
+```
+curl -X POST -d 'json={"key1":"value1" , "key2":"value2"}' http://localhost:9880/access.log
+```
+
+# elasticsearch commands
+
+- list all the indexes
+
+```
+curl -X GET 'http://localhost:9200/_cat/indices?v'
+```
+
+- list all the docs with the index
+
+```
+
+curl -X GET 'http://localhost:9200/fluentd.access.log/\_search'
+
+```
+
+- put new doc
+
+```
+curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/fluentd.access.log/_doc/200 -d '{
+   "key1" : "value1",
+   "key2" : "value2",
+   "key3" : "value3"
+}'
+```
