@@ -4,6 +4,6 @@ USER root
 # RUN mkdir /var/log/fluentd
 # RUN chown -R fluent:fluent /var/log/fluentd
 # RUN chmod 660  /var/log/fluentd
-RUN ["gem", "install", "fluent-plugin-elasticsearch", "--no-document", "--version", "5.0.3"]
+RUN ["gem", "install", "fluent-plugin-elasticsearch"]
 COPY fluent.conf /fluentd/etc
 USER fluent

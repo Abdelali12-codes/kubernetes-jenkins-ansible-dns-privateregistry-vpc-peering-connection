@@ -37,7 +37,7 @@ docker build -t fluentd .
 ### run the docker container on the customed image of fluentd
 
 ```
-docker run --name fluentd -d --net somenetwork -p 9880:9880 fluentd
+docker run --name fluentd -d --net somenetwork -p 8880:8880 fluentd
 ```
 
 ## run the kibana
@@ -74,7 +74,7 @@ curl -X GET 'http://localhost:9200/_cat/indices?v'
 
 ```
 
-curl -X GET 'http://localhost:9200/fluentd.access.log/\_search'
+curl -X GET 'http://localhost:9200/fluentd.access.log/_search'
 
 ```
 
