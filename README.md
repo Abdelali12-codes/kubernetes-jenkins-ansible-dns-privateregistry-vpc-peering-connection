@@ -87,3 +87,57 @@ curl -XPUT --header 'Content-Type: application/json' http://localhost:9200/fluen
    "key3" : "value3"
 }'
 ```
+
+# configure dns on your aws ec2 using ubuntu
+
+## install the needed packages
+
+```
+sudo aot-get update -y
+sudo apt-get install bind9 bind9utils bind9-doc dnsutils -y
+```
+
+## configure /etc/bind/named.conf.options
+
+```
+options {
+        directory "/var/cache/bind";
+        auth-nxdomain no;    # conform to RFC1035
+     // listen-on-v6 { any; };
+        listen-on port 53 { localhost; 172.31.24.11/32; };
+        allow-query { localhost; 172.31.0.0/16; };
+        forwarders { 8.8.8.8; };
+        recursion yes;
+        };
+```
+
+## configure your zone
+
+```
+
+zone    "abdelali.com"  {
+        type master;
+        file    "/etc/bind/db.abdelali.com";
+ };
+```
+
+## configure your forward lookup zone db
+
+```
+
+; BIND data file for local loopback interface
+;
+$TTL    604800
+@       IN      SOA     server.abdelali.com. root.server.abdelali.com. (
+                              17                ; Serial
+                         604800         ; Refresh
+                          86400         ; Retry
+                        2419200         ; Expire
+                         604800 )       ; Negative Cache TTL
+;
+@        IN     NS      server.abdelali.com.
+server   IN     A       172.31.24.11
+registry IN     A       172.31.20.23
+```
+
+## configure your reverse lookup zone db
