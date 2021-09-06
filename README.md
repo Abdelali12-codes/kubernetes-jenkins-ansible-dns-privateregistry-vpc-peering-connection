@@ -119,6 +119,11 @@ zone    "abdelali.com"  {
         type master;
         file    "/etc/bind/db.abdelali.com";
  };
+
+zone "108.168.192.in-addr.arpa" {
+     type master;
+     file "/etc/bind/reverse.abdelali.com"
+}
 ```
 
 ## configure your forward lookup zone db
@@ -136,8 +141,55 @@ $TTL    604800
                          604800 )       ; Negative Cache TTL
 ;
 @        IN     NS      server.abdelali.com.
-server   IN     A       172.31.24.11
-registry IN     A       172.31.20.23
+server   IN     A       192.168.108.140
+registry IN     A       192.168.108.145
 ```
 
 ## configure your reverse lookup zone db
+
+; BIND data file for local loopback interface
+;
+$TTL 604800
+@ IN SOA server.abdelali.com. root.server.abdelali.com. (
+17 ; Serial
+604800 ; Refresh
+86400 ; Retry
+2419200 ; Expire
+604800 ) ; Negative Cache TTL
+;
+@ IN NS server.abdelali.com.
+server IN A 192.168.108.140
+140 IN PTR server.abdelali.com.
+145 IN PTR registry.abdelali.com.
+
+## Test your dns
+
+- on the dns client
+
+```
+sudo nano /etc/resolv.conf
+nameserver 172.31.24.11
+search abdelali.com
+```
+
+# ubuntu solved issues
+
+```
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/lib/apt/lists/lock-frontend
+```
+
+```
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+```
+
+```
+sudo dpkg --configure -a
+sudo apt install -f
+```
+
+```
+sudo rm /var/lib/dpkg/updates/0004
+sudo dpkg --configure -a
+```
