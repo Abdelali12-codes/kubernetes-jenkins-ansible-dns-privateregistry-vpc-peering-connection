@@ -147,6 +147,7 @@ registry IN     A       192.168.108.145
 
 ## configure your reverse lookup zone db
 
+```
 ; BIND data file for local loopback interface
 ;
 $TTL 604800
@@ -161,6 +162,7 @@ $TTL 604800
 server IN A 192.168.108.140
 140 IN PTR server.abdelali.com.
 145 IN PTR registry.abdelali.com.
+```
 
 ## Test your dns
 
