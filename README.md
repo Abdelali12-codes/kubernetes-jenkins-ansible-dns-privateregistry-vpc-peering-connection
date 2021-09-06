@@ -239,7 +239,7 @@ ifconfig
 
 - add this line to the file
 
-* replace the eth0 with your interface name
+* replace the eth0 with your interface name in our case is ens33
 
 ```
 INTERFACESv4="eth0"
@@ -266,9 +266,5 @@ sudo systemctl restart isc-dhcp-server.service
 
 auto eth0 hd
 iface eth0 inet dhcp
-
-```
-
-```
 
 ```
