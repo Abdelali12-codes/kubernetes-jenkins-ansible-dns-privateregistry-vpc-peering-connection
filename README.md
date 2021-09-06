@@ -206,6 +206,10 @@ sudo apt-get install isc-dhcp-server
 
 ## a simple /etc/dhcp/dhcpd.conf
 
+```
+sudo nano /etc/dhcp/dhcp.conf
+```
+
 ### configure the dhcp server
 
 ```
@@ -237,13 +241,29 @@ ifconfig
 
 ###
 
-- add this line to the file
+- add this line to the file /etc/default/isc-dhcp-server
 
 * replace the eth0 with your interface name in our case is ens33
 
 ```
 INTERFACESv4="eth0"
 INTERFACESv6=""
+```
+
+### reset the dhcp server ip address
+
+```
+sudo nano /etc/network/interfaces
+```
+
+- add the below line to the file /etc/network/interfaces
+
+```
+auto ens33
+iface ens33 inet static
+address 172.31.24.120
+netmask 255.255.255.0
+gateway 172.31.24.1
 ```
 
 ### restart your dhcp server
@@ -264,7 +284,19 @@ sudo systemctl restart isc-dhcp-server.service
 
 ```
 
-auto eth0 hd
+auto eth0
 iface eth0 inet dhcp
+
+```
+
+# create SSL/TLS certificate for our nginix server
+
+```
+sudo mkdir -p docker-registry/certificates
+```
+
+```
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout certificates/abdelali.com.key -out certificates/abdelali.com.crt
 
 ```
