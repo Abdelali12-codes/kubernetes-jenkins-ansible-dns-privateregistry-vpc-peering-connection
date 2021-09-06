@@ -193,3 +193,72 @@ sudo apt install -f
 sudo rm /var/lib/dpkg/updates/0004
 sudo dpkg --configure -a
 ```
+
+# Configure the dhcp server
+
+## install the dhcp server on ubuntu
+
+```
+sudo apt-get install isc-dhcp-server
+```
+
+## a simple /etc/dhcp/dhcpd.conf
+
+### configure the dhcp server
+
+```
+default-lease-time 600;
+max-lease-time 7200;
+authoritative;
+
+subnet 192.168.108.0 netmask 255.255.255.0 {
+ range 192.168.108.100 192.168.108.200;
+ option routers 192.168.108.254;
+ option domain-name-servers 192.168.108.140;
+ option domain-name "abdelali.com";
+}
+```
+
+### bind the dhcp server to an interface
+
+```
+sudo nano /etc/default/isc-dhcp-server
+```
+
+###
+
+- add this line to the file
+
+* replace the eth0 with your interface name
+
+```
+INTERFACESv4="eth0"
+INTERFACESv6=""
+```
+
+### restart your dhcp server
+
+```
+sudo service isc-dhcp-server restart
+```
+
+or
+
+```
+sudo systemctl restart isc-dhcp-server.service
+```
+
+# configure the dhcp client
+
+- you must to replace eth0 interface with yours
+
+```
+
+auto eth0 hd
+iface eth0 inet dhcp
+
+```
+
+```
+
+```
