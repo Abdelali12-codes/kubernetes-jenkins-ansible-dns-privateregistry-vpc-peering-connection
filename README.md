@@ -231,7 +231,7 @@ sudo nano /etc/default/isc-dhcp-server
 ifconfig
 ```
 
-<img src="https://raw.githubusercontent.com/Abdelali12-codes/kubernetes-jenkins-ansible-dns-privateregistry-vpc-peering-connection/master/interface.jpg" >
+<img src="https://raw.githubusercontent.com/Abdelali12-codes/kubernetes-jenkins-ansible-dns-privateregistry-vpc-peering-connection/master/interface.png" >
 
 ###
 
