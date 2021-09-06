@@ -225,6 +225,14 @@ subnet 192.168.108.0 netmask 255.255.255.0 {
 sudo nano /etc/default/isc-dhcp-server
 ```
 
+### check your network configuration
+
+```
+ifconfig
+```
+
+<img src="https://raw.githubusercontent.com/Abdelali12-codes/kubernetes-jenkins-ansible-dns-privateregistry-vpc-peering-connection/master/interface.jpg" >
+
 ###
 
 - add this line to the file
