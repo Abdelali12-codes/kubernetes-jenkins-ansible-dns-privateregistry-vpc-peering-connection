@@ -212,6 +212,20 @@ sudo nano /etc/dhcp/dhcp.conf
 
 ### assign a static ip address to the server
 
+```
+sudo nano /etc/network/interfaces
+```
+
+then
+
+```
+auto ens33
+iface ens33 inet static
+address 172.31.24.120
+netmask 255.255.255.0
+gateway 172.31.24.1
+```
+
 ### configure the dhcp server
 
 ```
@@ -227,7 +241,7 @@ subnet 192.168.108.0 netmask 255.255.255.0 {
 }
 ```
 
-### assigning static iP address to a client
+### assigning static iP address to a host
 
 - select the MAC Address of the interface from which you’re planning to connect to the network
 
@@ -237,8 +251,8 @@ subnet 192.168.108.0 netmask 255.255.255.0 {
 
 ```
 host archmachine {
-hardware ethernet e0:91:53:31:af:ab;
-fixed-address 192.168.1.20;
+hardware ethernet 00:0c:29:08:3c:cc;
+fixed-address 172.31.24.170;
 }
 ```
 
