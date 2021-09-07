@@ -210,6 +210,8 @@ sudo apt-get install isc-dhcp-server
 sudo nano /etc/dhcp/dhcp.conf
 ```
 
+### assign a static ip address to the server
+
 ### configure the dhcp server
 
 ```
@@ -222,6 +224,21 @@ subnet 192.168.108.0 netmask 255.255.255.0 {
  option routers 192.168.108.254;
  option domain-name-servers 192.168.108.140;
  option domain-name "abdelali.com";
+}
+```
+
+### assigning static iP address to a client
+
+- select the MAC Address of the interface from which you’re planning to connect to the network
+
+* the image to see how to obtain your server mac address
+
+<img src="https://raw.githubusercontent.com/Abdelali12-codes/kubernetes-jenkins-ansible-dns-privateregistry-vpc-peering-connection/master/macaddress.png" >
+
+```
+host archmachine {
+hardware ethernet e0:91:53:31:af:ab;
+fixed-address 192.168.1.20;
 }
 ```
 
